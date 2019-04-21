@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="109px" height="35px" viewBox="0 0 109 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Sign-up" transform="translate(-797.000000, -162.000000)">
+            <g id="Group" transform="translate(797.000000, 159.000000)">
+                <text id="Pitch" font-family="OpenSans-Bold, Open Sans" font-size="30" font-weight="bold" fill="#283044">
+                    <tspan x="35" y="32">Pitch</tspan>
+                </text>
+                <rect id="Rectangle" stroke="#E9C4B2" stroke-width="3" fill-rule="nonzero" x="25.5" y="4.5" width="6" height="32"></rect>
+                <rect id="Rectangle-Copy-3" stroke="#E9C4B2" stroke-width="3" fill-rule="nonzero" x="13.5" y="4.5" width="6" height="32"></rect>
+                <rect id="Rectangle-Copy-4" stroke="#E9C4B2" stroke-width="3" fill-rule="nonzero" x="1.5" y="4.5" width="6" height="32"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
