@@ -10,27 +10,8 @@
         </head>
 {% endblock head %}
 {% block body %}
-    {% block navbar %}
-        <div class="container">
-            <nav class="mb-1 navbar navbar-expand-lg"><img src="{{ url_for('static', filename='logo.svg') }}" class="navbar-brand" width="8%" height="8%">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active"><a href="#" class="nav-link" style="color: #283044;">Sign In</a></li>
-                        <li class="nav-item "><a href="#" class="nav-link" style="color: #283044;">Sign Out</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    {% endblock navbar %}
-    <section>
-        <header>
-            {% block header %}
-                <div class="heroimage">
-                    <img src="{{ url_for('static', filename='heroimage2.jpg') }}" width="100%" height="100%" alt="">
-                </div>
-            {% endblock %}
-        </header>
-    </section>
+
+
 
     {# empty block for custom content #}
     {% block content %}
