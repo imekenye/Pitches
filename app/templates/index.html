@@ -1,1 +1,16 @@
 {% extends 'layout.html' %}
+
+{% block content %}
+    {% block navbar %}
+        {% include 'navbar.html' %}
+    {% endblock navbar %}
+    <section>
+        <header>
+            {% block header %}
+                <div class="heroimage">
+                    <img src="{{ url_for('static', filename='heroimage2.jpg') }}" width="100%" height="100%" alt="">
+                </div>
+            {% endblock %}
+        </header>
+    </section>
+{% endblock content %}
