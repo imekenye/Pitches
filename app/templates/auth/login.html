@@ -1,10 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'layout.html' %}
+<title>
+    {% block title %}
+        {{ title }}
+    {% endblock title %}
+</title>
 
-</body>
-</html>
+
+{% block content %}
+    <div class="container-fluid" style="font-family: 'Open Sans';">
+        <div class="row h-100">
+            <div class="col-md-4 p-0 h-100">
+                <img src="{{ url_for('static', filename='loginimg.jpg') }}" width="100%" height="100%" alt="">
+            </div>
+            <div class="col-md-8 my-auto text-center">
+
+                {% for message in get_flashed_messages() %}
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                <img src="{{ url_for('static', filename='logo.svg') }}" class="mb-5" width="10%">
+                <h2 style="font-weight: 700" class="mt-3">Sign in to pitch</h2>
+                <form action="/login" method="post">
+
+                    <div class="form-group">
+                        {{ login_form.email(style="padding: .8em 1em; border: 1px solid #283044;border-radius: 2px;width: 40%; height: ; font-size: 10px;") }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ login_form.password(style="padding: .8em 1em; border: 1px solid #283044;border-radius: 2px;width: 40%; height: ; font-size: 10px;") }}
+                    </div>
+
+                     <div class="form-group ">
+                        {{ login_form.submit(class="btn mt-3", style="background: #E9C4B2;
+box-shadow: 0 8px 18px 3px rgba(0,0,0,0.07); width: 40%;") }}
+                     </div>
+
+
+                </form>
+                <p>No Account? <span ><a href="{{url_for('auth.register')}}" style="color: #E9C4B2" >SignUp here</a></span></p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
