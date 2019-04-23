@@ -4,10 +4,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
                     <ul class="navbar-nav ml-auto">
                         {% if current_user.is_authenticated %}
-                        <li style="color:#E9C4B2;"><a href="{{ url_for( 'main.profile', uname = current_user.username ) }}">Profile</a></li>
+                            <li class="nav-item" ><a href="#" class="nav-link" style="color: #283044;">Welcome! <span class="mr-3" style="color: #E9C4B2;">{{ current_user.username }}</span></a></li>
+                            <li class="nav-item "><a href="{{ url_for('main.index') }}" class="nav-link" style="color: #283044;">Home</a></li>
+                        <li  class="nav-item"><a class="nav-link" style="color: #283044;"  href="{{ url_for( 'main.profile', uname = current_user.username ) }}"> Profile</a></li>
                         <li class="nav-item "><a href="{{ url_for('auth.logout') }}" class="nav-link" style="color: #283044;">Sign Out</a></li>
+{#                            <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" width="50" height="50" class="img-rounded" style="border-radius: 50%;">#}
                         {% else %}
                         <li class="nav-item "><a href="{{ url_for('auth.login') }}" class="nav-link" style="color: #283044;">Sign In</a></li>
+                        <li class="nav-item "><a href="{{ url_for('auth.register') }}" class="nav-link" style="color: #283044;">Sign Up</a></li>
                         {% endif %}
                     </ul>
                 </div>
