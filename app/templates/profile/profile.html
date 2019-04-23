@@ -1,11 +1,22 @@
 {% extends 'layout.html'%}
 
 {% block content %}
+
 <div class="container">
+    {% include 'navbar.html' %}
 <div class="row">
 <!-- displaying  Username-->
-  <div class="col-md-4">
-    <h3> {{user.username| capitalize}} </h3>
+  <div class="col-md-4 h-100 mx-auto text-center mt-5 p-5" style="border: 1px solid #283044;border-radius: 8px;">
+    {% if user.profile_pic_path %}
+
+    <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" width="200" height="200" class="mx-auto" style="border-radius: 50%;">
+
+    {%else%}
+    <p>No profile picture</p>
+
+    {% endif %}
+
+    <h3 class="text-center"> {{user.username| capitalize}} </h3>
 
     <!--Displaying user bio-->
     {% if user.bio %}
@@ -13,16 +24,27 @@
     {%else%}
       <p> {{user.username| capitalize}} has no bio </p>
     {% endif %}
+  {% if user == current_user %}
+    <a href="{{url_for('main.update_profile',uname=user.username)}}" style="color: #998DA0">Edit Bio</a>
+  {% endif %}
+
+  {#change photo#}
+    {% if user == current_user %}
+            <form class="mt-5 " action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype = "multipart/form-data">
+                <h4>Update Photo</h4>
+
+              <input style="border: 1px solid #283044; border-radius: 8px; font-size: 14px;" type="file"  name="photo" class="w-75" required>
+              <input style="background: #E9C4B2;
+box-shadow: 0 8px 18px 3px rgba(0,0,0,0.07); width: 70%;" type="submit" class="mt-3 mb-3">
+            </form>
+      {% endif %}
   </div>
 
-  <!--Display profile photo-->
-  <div class="col-md-4">
 
-    {% if user.profile_pic_path %}
-    <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
-    {%else%}
-    <p>No profile picture</p>
-    {% endif %}
+
+  <!--Display profile photo-->
+  <div class="col-md-8 my-auto text-center">
+      <a href="{{ url_for('main.submit_pitch',user_id=pitch.user_id) }}" class="btn " style="background-color: #283044;color: #fff;">Submit Pitch</a>
   </div>
 </div>
 </div>
