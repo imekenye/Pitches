@@ -1,10 +1,10 @@
 from flask import  render_template,redirect,request,url_for,abort,flash
 from . import main
-from .forms import UpdateProfile,SubmitPitch
+from .forms import UpdateProfile,SubmitPitch,CommentForm
 from .. import db,photos
 # from ..static import photos
 from flask_login import login_required
-from ..models import User,Pitch
+from ..models import User,Pitch,Comments
 
 @main.route('/')
 def index():
@@ -19,11 +19,12 @@ def index():
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username = uname).first()
+    index=Pitch.query.all()
 
     if user is None:
         abort(404)
 
-    return render_template("profile/profile.html", user = user)
+    return render_template("profile/profile.html", user = user, index=index)
 
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
 @login_required
@@ -55,18 +56,30 @@ def update_pic(uname):
         db.session.commit()
     return redirect(url_for('main.profile',uname=uname))
 
-@main.route('/user/<user_id>',methods=['GET', 'POST'])
+@main.route('/pitchsubmit',methods=['GET', 'POST'])
 @login_required
-def submit_pitch(user_id):
+def submit_pitch():
     form = SubmitPitch()
-    form.user_id.data = user_id
+
 
     if form.validate_on_submit():
         pitch = Pitch(post=form.post.data, body=form.body.data,category=form.category.data)
+        pitch.save_pitch()
 
-        db.session.add(pitch)
+        # flash('Pitch added successfully')
+
+        return redirect(url_for('main.index'))
+    return render_template('pitchsubmit.html', form=form)
+
+# comments
+@main.route('/comments', methods = ['GET','POST'])
+@login_required
+def new_comment(id):
+    form = CommentForm()
+    pitch = Pitch.query.get(id)
+    if form.validate_on_submit():
+        comment = Comments(title=form.title.data,comment=form.comment.data, pitch=pitch)
+        db.session.add(comment)
         db.session.commit()
-        flash('Pitch added successfully')
-
-        return redirect(url_for('pitches.html',user_id=pitch.user_id))
-    return render_template('pitchsubmit.html', form=form, user_id=user_id)
+    com_ment = Comments.query.filter_by(pitch=pitch).all()
+    return render_template('comment.html',com_ment=com_ment,form=form)

@@ -8,6 +8,7 @@
                             <li class="nav-item "><a href="{{ url_for('main.index') }}" class="nav-link" style="color: #283044;">Home</a></li>
                         <li  class="nav-item"><a class="nav-link" style="color: #283044;"  href="{{ url_for( 'main.profile', uname = current_user.username ) }}"> Profile</a></li>
                         <li class="nav-item "><a href="{{ url_for('auth.logout') }}" class="nav-link" style="color: #283044;">Sign Out</a></li>
+                            <a href="{{ url_for('main.submit_pitch') }}" class="btn " style="background-color: #283044;color: #fff;">Submit Pitch</a>
 {#                            <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" width="50" height="50" class="img-rounded" style="border-radius: 50%;">#}
                         {% else %}
                         <li class="nav-item "><a href="{{ url_for('auth.login') }}" class="nav-link" style="color: #283044;">Sign In</a></li>

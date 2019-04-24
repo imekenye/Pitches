@@ -1,12 +1,14 @@
 {% extends 'layout.html'%}
 
 {% block content %}
+{% include 'navbar.html' %}
+<div class="container-fluid" style="background-color: #f4f4f4">
 
 <div class="container">
-    {% include 'navbar.html' %}
 <div class="row">
-<!-- displaying  Username-->
-  <div class="col-md-4 h-100 mx-auto text-center mt-5 p-5" style="border: 1px solid #283044;border-radius: 8px;">
+    <!-- displaying  Username-->
+  <div class="col-md-4 h-100 mx-auto text-center  mt-5 p-5" style=" border-left:3px solid #283044;border-right:3px solid #283044; background: #FFFFFF;
+box-shadow: 0 12px 38px -9px rgba(0,0,0,0.50); position: sticky;border-radius: 8px;">
     {% if user.profile_pic_path %}
 
     <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" width="200" height="200" class="mx-auto" style="border-radius: 50%;">
@@ -16,22 +18,23 @@
 
     {% endif %}
 
-    <h3 class="text-center"> {{user.username| capitalize}} </h3>
+    <h3 class="text-center mt-5" style="color:#283044; font-weight: 700"> {{user.username| capitalize}} </h3>
 
     <!--Displaying user bio-->
     {% if user.bio %}
-      <p> {{user.bio}}</p>
+      <p style="font-size: 14px;"> {{user.bio}}</p>
     {%else%}
       <p> {{user.username| capitalize}} has no bio </p>
     {% endif %}
   {% if user == current_user %}
     <a href="{{url_for('main.update_profile',uname=user.username)}}" style="color: #998DA0">Edit Bio</a>
   {% endif %}
+      <hr style="background-color: white;">
 
   {#change photo#}
     {% if user == current_user %}
             <form class="mt-5 " action="{{url_for('main.update_pic',uname=user.username)}}" method="post" enctype = "multipart/form-data">
-                <h4>Update Photo</h4>
+                <h4 style="font-size: 20px; color: #E9C4B2;">Update Photo</h4>
 
               <input style="border: 1px solid #283044; border-radius: 8px; font-size: 14px;" type="file"  name="photo" class="w-75" required>
               <input style="background: #E9C4B2;
@@ -42,10 +45,27 @@ box-shadow: 0 8px 18px 3px rgba(0,0,0,0.07); width: 70%;" type="submit" class="m
 
 
 
-  <!--Display profile photo-->
-  <div class="col-md-8 my-auto text-center">
-      <a href="{{ url_for('main.submit_pitch',user_id=pitch.user_id) }}" class="btn " style="background-color: #283044;color: #fff;">Submit Pitch</a>
+  <!--Display pitches photo-->
+  <div class="col-md-8 my-auto text-center " >
+     {% for pitch in index %}
+      <div class="card p-5 mt-5" style="border: none;background: #FFFFFF;
+box-shadow: 0 12px 38px -9px rgba(0,0,0,0.50); border-left: 3px solid #283044;">
+        <div class="d-flex align-items-center justify-content-between">
+          <h2 class="text-left" style="font-size: 28px; font-weight: 700;">{{pitch.post}}</h2>
+        <h6 style="font-size: 10px;background-color: #D8D8D8;border-radius: 10px" class="px-3">{{pitch.category}}</h6>
+        </div>
+        <p class="text-left" style="font-size: 14px;">{{pitch.body}}</p>
+
+          <div class="d-flex align-items-center justify-content-between">
+            <p>{{pitch.date_posted}}</p>
+        <p><a href="/comment">Comment</a></p>
+          </div>
+
+      </div>
+      {% endfor %}
   </div>
+</div>
+
 </div>
 </div>
 {% endblock %}
