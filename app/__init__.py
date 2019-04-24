@@ -36,8 +36,6 @@ def create_app(config_name):
     configure_uploads(app, photos)
 
 
-
-
     # Registering blueprints
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
