@@ -1,7 +1,8 @@
 import os
 
 class Config:
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:nathangwaro17@localhost/pitch'
+    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:nathangwaro17@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://studiopx:12345@localhost/pitch'
     SECRET_KEY = os.environ.get('SECRET_KEY')
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
     CSRF_ENABLED = True
@@ -19,7 +20,7 @@ class ProdConfig(Config):
 
 class DevConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:nathangwaro17@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://studiopx:12345@localhost/pitch'
 
 config_options = {
 'development':DevConfig,
