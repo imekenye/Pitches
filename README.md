@@ -55,7 +55,7 @@ Python 3.6
 
 or just use this
 
-`$ git clone https://github.com/imekenye/pitch.git`
+`$ git clone https://github.com/imekenye/Pitches.git`
 
 4. Run the following command to make the app executable;
 
